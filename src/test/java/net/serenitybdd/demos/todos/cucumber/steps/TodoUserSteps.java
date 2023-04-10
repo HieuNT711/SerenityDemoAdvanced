@@ -16,9 +16,12 @@ import net.serenitybdd.demos.todos.screenplay.model.TodoStatusFilter;
 import net.serenitybdd.demos.todos.screenplay.questions.TheItems;
 import net.serenitybdd.demos.todos.screenplay.tasks.*;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.model.TestOutcome;
+
+import net.serenitybdd.screenplay.ui.Button;
 
 import java.util.List;
 
@@ -30,23 +33,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
 public class TodoUserSteps {
-
-    @Before
-    public void set_the_stage() {
-        setTheStage(new OnlineCast());
-    }
-
-    @AfterExample
-    public void deleteAllTheTasks() {
-        theActorInTheSpotlight().attemptsTo(
-                DeleteAllTheItems.onThePage()
-        );
-    }
-
-    @ParameterType(".*")
-    public Actor actor(String actor) {
-        return OnStage.theActorCalled(actor);
-    }
 
     @ParameterType("All|Active|Completed")
     public TodoStatusFilter filter(String filter) {
@@ -69,8 +55,8 @@ public class TodoUserSteps {
     }
 
     @When("{actor} adds {string} to his/her list")
-    public void adds_to_his_list(Actor actor, String item) {
-        actor.attemptsTo(AddATodoItem.called(item));
+    public void adds_to_his_list(Actor actor, String items) {
+        actor.attemptsTo(AddATodoItem.called(items));
     }
 
     @When("{actor} deletes the task called {string}")
