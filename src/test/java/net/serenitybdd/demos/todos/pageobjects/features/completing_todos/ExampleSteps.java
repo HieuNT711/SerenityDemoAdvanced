@@ -5,7 +5,5 @@ import net.thucydides.core.annotations.Step;
 public class ExampleSteps {
 
     @Step("Page should contain [{0}] [{1}] element(s)")
-    public void pageShouldContainElements(Object value, Object name) {
-
-    }
+    public void pageShouldContainElements(Object value, Object name) {}
 }

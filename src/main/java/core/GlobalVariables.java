@@ -7,7 +7,7 @@ public class GlobalVariables {
         throw new IllegalStateException("Constant class");
     }
 
-    //common
+    // common
     public static final String URL = "http://live.techpanda.org/";
     public static final String DISCOUNT_CODE = "GURU50 ";
 

@@ -5,6 +5,7 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.WithTag;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -29,14 +30,15 @@ public class ClearCompletedTodos {
             james.clears_completed_items();
 
             james.should_see_that_displayed_items_contain("Put out the garbage");
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
     }
 
     @Test
-    public void should_not_be_able_to_clear_completed_todos_if_none_are_complete_with_page_objects() {
+    public void
+            should_not_be_able_to_clear_completed_todos_if_none_are_complete_with_page_objects() {
 
         james.starts_with_a_todo_list_containing("Walk the dog", "Put out the garbage");
 

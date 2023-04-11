@@ -1,5 +1,10 @@
 package net.serenitybdd.demos.todos.screenplay.features.maintain_my_todo_list;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.*;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
+
 import net.serenitybdd.demos.todos.screenplay.questions.TheItems;
 import net.serenitybdd.demos.todos.screenplay.tasks.DeleteAnItem;
 import net.serenitybdd.demos.todos.screenplay.tasks.Start;
@@ -9,24 +14,20 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.*;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.contains;
-
 @RunWith(SerenityRunner.class)
 @WithTags({
-        @WithTag("Screenplay pattern"),
-        @WithTag("version:RELEASE-1"),
+    @WithTag("Screenplay pattern"),
+    @WithTag("version:RELEASE-1"),
 })
 public class DeletingTodos {
 
-    @Managed
-    private WebDriver hisBrowser;
+    @Managed private WebDriver hisBrowser;
 
     private Actor james = Actor.named("James");
 
@@ -38,7 +39,8 @@ public class DeletingTodos {
     @Test
     public void should_be_able_to_delete_todos() {
 
-        givenThat(james).wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
+        givenThat(james)
+                .wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
 
         when(james).attemptsTo(DeleteAnItem.called("Walk the dog"));
 
@@ -48,11 +50,10 @@ public class DeletingTodos {
     @Test
     public void should_see_deleting_a_todo_decreases_the_remaining_items_count() {
 
-        givenThat(james).wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
+        givenThat(james)
+                .wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
 
-        when(james).attemptsTo(
-                DeleteAnItem.called("Walk the dog")
-        );
+        when(james).attemptsTo(DeleteAnItem.called("Walk the dog"));
 
         then(james).should(seeThat(TheItems.leftCount(), is(1)));
     }

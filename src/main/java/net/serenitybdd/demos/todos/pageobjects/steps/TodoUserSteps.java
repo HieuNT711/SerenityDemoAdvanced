@@ -1,14 +1,8 @@
 package net.serenitybdd.demos.todos.pageobjects.steps;
 
-import net.serenitybdd.demos.todos.pageobjects.model.TodoStatusFilter;
-import net.serenitybdd.demos.todos.pageobjects.pages.TodoListPage;
-import net.thucydides.core.ThucydidesSystemProperty;
-import net.thucydides.core.annotations.Step;
-import net.thucydides.core.util.EnvironmentVariables;
-
-import static java.util.Arrays.asList;
 import static net.serenitybdd.demos.todos.pageobjects.model.TodoStatus.Active;
 import static net.serenitybdd.demos.todos.pageobjects.model.TodoStatus.Completed;
+
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -16,6 +10,11 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 
+import static java.util.Arrays.asList;
+
+import net.serenitybdd.demos.todos.pageobjects.model.TodoStatusFilter;
+import net.serenitybdd.demos.todos.pageobjects.pages.TodoListPage;
+import net.thucydides.core.annotations.Step;
 
 public class TodoUserSteps {
 
@@ -145,5 +144,4 @@ public class TodoUserSteps {
     public void should_see_the_about_section() {
         assertThat(todoListPage.footer(), containsString("Credits"));
     }
-
 }

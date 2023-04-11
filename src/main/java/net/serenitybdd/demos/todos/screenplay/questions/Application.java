@@ -7,8 +7,6 @@ import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.questions.Text;
 
-import static net.serenitybdd.screenplay.questions.ValueOf.the;
-
 public class Application implements Question<ApplicationInformation> {
 
     @Override

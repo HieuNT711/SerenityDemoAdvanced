@@ -1,5 +1,9 @@
 package net.serenitybdd.demos.todos.screenplay.features.maintain_my_todo_list;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.*;
+
+import static org.hamcrest.Matchers.contains;
+
 import net.serenitybdd.demos.todos.screenplay.questions.TheItems;
 import net.serenitybdd.demos.todos.screenplay.tasks.Clear;
 import net.serenitybdd.demos.todos.screenplay.tasks.CompleteItem;
@@ -10,19 +14,17 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.*;
-    import static org.hamcrest.Matchers.contains;
-
 @RunWith(SerenityRunner.class)
 @WithTag("Screenplay pattern")
 @WithTags({
-        @WithTag("Screenplay pattern"),
-        @WithTag("version:RELEASE-3"),
+    @WithTag("Screenplay pattern"),
+    @WithTag("version:RELEASE-3"),
 })
 public class TodosBelongToAUser {
 
@@ -40,13 +42,11 @@ public class TodosBelongToAUser {
 
     @Test
     public void should_not_affect_todos_belonging_to_another_user() {
-        givenThat(james).wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
+        givenThat(james)
+                .wasAbleTo(Start.withATodoListContaining("Walk the dog", "Put out the garbage"));
         andThat(jane).wasAbleTo(Start.withATodoListContaining("Walk the dog", "Feed the cat"));
 
-        when(james).attemptsTo(
-                CompleteItem.called("Walk the dog"),
-                Clear.completedItems()
-        );
+        when(james).attemptsTo(CompleteItem.called("Walk the dog"), Clear.completedItems());
 
         then(jane).should(seeThat(TheItems.displayed(), contains("Walk the dog", "Feed the cat")));
     }

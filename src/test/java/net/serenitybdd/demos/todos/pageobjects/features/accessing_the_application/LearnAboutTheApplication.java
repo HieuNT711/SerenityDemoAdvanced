@@ -6,20 +6,21 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityRunner.class)
 @WithTags({
-        @WithTag("PageObjects pattern"),
-        @WithTag("version:RELEASE-1"),
+    @WithTag("PageObjects pattern"),
+    @WithTag("version:RELEASE-1"),
 })
 public class LearnAboutTheApplication {
 
     @Managed WebDriver driver;
 
-    @Steps   TodoUserSteps james;
+    @Steps TodoUserSteps james;
 
     @Test
     public void should_be_able_to_identify_the_application_with_page_objects() {

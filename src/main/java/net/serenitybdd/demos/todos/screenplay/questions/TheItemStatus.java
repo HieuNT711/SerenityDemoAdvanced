@@ -24,6 +24,7 @@ public class TheItemStatus implements Question<TodoStatus> {
     public static TheItemStatus forTheItemCalled(String itemName) {
         return new TheItemStatus(itemName);
     }
+
     public TheItemStatus(String itemName) {
         this.itemName = itemName;
     }

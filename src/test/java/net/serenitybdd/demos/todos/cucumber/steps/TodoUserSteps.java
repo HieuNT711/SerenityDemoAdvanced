@@ -1,36 +1,27 @@
 package net.serenitybdd.demos.todos.cucumber.steps;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+
+import static java.util.Collections.EMPTY_LIST;
 
 import com.google.common.base.Splitter;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.core.annotations.events.AfterExample;
-import net.serenitybdd.core.annotations.events.AfterScenario;
-import net.serenitybdd.core.annotations.events.BeforeExample;
-import net.serenitybdd.core.annotations.events.BeforeScenario;
+
 import net.serenitybdd.demos.todos.cucumber.MissingTodoItemsException;
 import net.serenitybdd.demos.todos.screenplay.model.TodoStatusFilter;
 import net.serenitybdd.demos.todos.screenplay.questions.TheItems;
 import net.serenitybdd.demos.todos.screenplay.tasks.*;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.actors.OnStage;
-import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.thucydides.core.model.TestOutcome;
-
-import net.serenitybdd.screenplay.ui.Button;
 
 import java.util.List;
-
-import static java.util.Collections.EMPTY_LIST;
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
-import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItem;
 
 public class TodoUserSteps {
 
@@ -66,22 +57,31 @@ public class TodoUserSteps {
 
     @Then("{string} should be recorded in his/her list")
     public void item_should_be_recorded_in_the_list(String expectedItem) {
-        theActorInTheSpotlight().should(seeThat(TheItems.displayed(), hasItem(expectedItem))
-                .orComplainWith(MissingTodoItemsException.class, "Missing todo " + expectedItem));
+        theActorInTheSpotlight()
+                .should(
+                        seeThat(TheItems.displayed(), hasItem(expectedItem))
+                                .orComplainWith(
+                                        MissingTodoItemsException.class,
+                                        "Missing todo " + expectedItem));
     }
 
     @Then("his/her todo list should contain {items}")
     public void todo_list_should_contain(List<String> expectedItems) {
-        theActorInTheSpotlight().should(seeThat(TheItems.displayed(), equalTo(expectedItems))
-                .orComplainWith(MissingTodoItemsException.class, "Missing todos " + expectedItems));
+        theActorInTheSpotlight()
+                .should(
+                        seeThat(TheItems.displayed(), equalTo(expectedItems))
+                                .orComplainWith(
+                                        MissingTodoItemsException.class,
+                                        "Missing todos " + expectedItems));
     }
 
     @Then("{actor}'s todo list should contain {items}")
     public void a_users_todo_list_should_contain(Actor actor, List<String> expectedItems) {
-        actor.should(seeThat(TheItems.displayed(), equalTo(expectedItems))
-                .orComplainWith(MissingTodoItemsException.class, "Missing todos " + expectedItems));
+        actor.should(
+                seeThat(TheItems.displayed(), equalTo(expectedItems))
+                        .orComplainWith(
+                                MissingTodoItemsException.class, "Missing todos " + expectedItems));
     }
-
 
     @Then("his/her todo list should be empty")
     public void todo_list_should_be_empty() {
@@ -90,15 +90,11 @@ public class TodoUserSteps {
 
     @Then("^s?he (?:completes|has completed) the task called '(.*)'$")
     public void completes_task_called(String item) {
-        theActorInTheSpotlight().attemptsTo(
-                CompleteItem.called(item)
-        );
+        theActorInTheSpotlight().attemptsTo(CompleteItem.called(item));
     }
 
     @When("{actor} filters her list to show only {filter} tasks")
     public void filters_tasks_by(Actor actor, TodoStatusFilter status) {
-        actor.attemptsTo(
-                FilterItems.toShow(status)
-        );
+        actor.attemptsTo(FilterItems.toShow(status));
     }
 }

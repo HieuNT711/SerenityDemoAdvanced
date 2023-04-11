@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.actions.Click;
 
 public class CompleteItem {
     public static Performable called(String itemName) {
-        return Task.where("{0} completes the item called: " + itemName,
-                Click.on(TodoListItem.COMPLETE_ITEM.of(itemName))
-        );
+        return Task.where(
+                "{0} completes the item called: " + itemName,
+                Click.on(TodoListItem.COMPLETE_ITEM.of(itemName)));
     }
 }

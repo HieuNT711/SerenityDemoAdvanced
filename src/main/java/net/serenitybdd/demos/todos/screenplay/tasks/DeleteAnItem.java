@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.Task;
 
 public class DeleteAnItem {
     public static Performable called(String itemName) {
-        return Task.where("{0} deletes the item " + itemName,
-                JSClick.on(TodoListItem.DELETE_ITEM.of(itemName))
-        );
+        return Task.where(
+                "{0} deletes the item " + itemName,
+                JSClick.on(TodoListItem.DELETE_ITEM.of(itemName)));
     }
 }

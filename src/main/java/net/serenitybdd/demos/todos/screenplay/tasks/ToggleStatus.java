@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.actions.Evaluate;
 
 public class ToggleStatus {
     public static Performable ofAllItems() {
-        return Task.where("{0} toggles the status of all items",
-                Evaluate.javascript("arguments[0].click();", TodoList.TOGGLE_ALL_BUTTON)
-        );
+        return Task.where(
+                "{0} toggles the status of all items",
+                Evaluate.javascript("arguments[0].click();", TodoList.TOGGLE_ALL_BUTTON));
     }
 }

@@ -6,6 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.demos.todos.pageobjects.model.TodoStatus;
 import net.serenitybdd.demos.todos.pageobjects.model.TodoStatusFilter;
 import net.thucydides.core.annotations.DefaultUrl;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,14 +54,11 @@ public class TodoListPage extends PageObject {
     }
 
     public void addATodoItemCalled(String itemName) {
-        $(NEW_TODO_INPUT_FIELD).type(itemName)
-                .then().sendKeys(Keys.ENTER);
+        $(NEW_TODO_INPUT_FIELD).type(itemName).then().sendKeys(Keys.ENTER);
     }
 
     public void filterByStatus(TodoStatusFilter status) {
-        findBy(FILTERS)
-                .then().findBy(statusFilterLinkFor(status))
-                .then().click();
+        findBy(FILTERS).then().findBy(statusFilterLinkFor(status)).then().click();
     }
 
     private String statusFilterLinkFor(TodoStatusFilter status) {
@@ -72,7 +70,8 @@ public class TodoListPage extends PageObject {
     }
 
     public void delete(String todoItem) {
-        evaluateJavascript("arguments[0].click()", inItemRowLabelFor(todoItem).findBy(DELETE_BUTTON));
+        evaluateJavascript(
+                "arguments[0].click()", inItemRowLabelFor(todoItem).findBy(DELETE_BUTTON));
     }
 
     private WebElementFacade inItemRowFor(String todoItem) {
@@ -84,7 +83,9 @@ public class TodoListPage extends PageObject {
     }
 
     private boolean isShownAsCompleted(WebElementFacade itemRow) {
-        return itemRow.find(By.tagName("label")).getCssValue("text-decoration").contains("line-through");
+        return itemRow.find(By.tagName("label"))
+                .getCssValue("text-decoration")
+                .contains("line-through");
     }
 
     public void updateItem(String currentItemName, String newItemName) {
@@ -98,9 +99,8 @@ public class TodoListPage extends PageObject {
     }
 
     public void toggleAll() {
-        evaluateJavascript("arguments[0].click();",$("#toggle-all"), $(TOGGLE_ALL));
+        evaluateJavascript("arguments[0].click();", $("#toggle-all"), $(TOGGLE_ALL));
     }
-
 
     // -----------------------------------------------------------------------------------------------------------------
     // GETTERS
