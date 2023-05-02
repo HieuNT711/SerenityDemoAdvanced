@@ -1,9 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Clone') {
             steps {
                 git 'https://github.com/HieuNT711/SerenityDemoAdvanced.git'
+            }
+        }
+       stage('Run') {
+            steps {
                 bat '''mvn clean verify -Pcucumber'''
             }
         }
