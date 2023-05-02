@@ -9,6 +9,5 @@ public class TechPandaSteps {
     @Given("{actor} register account in LiveGuru99 successfully")
     public void jameRegisterAccountInLiveGuruSuccessfully(Actor actor) {
         actor.attemptsTo(CommonPage.registerAccount());
-        System.out.println("hiẻu");
     }
 }
