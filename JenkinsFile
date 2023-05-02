@@ -4,7 +4,6 @@ pipeline {
         stage('Build') {
             steps {
                 git 'https://github.com/HieuNT711/SerenityDemoAdvanced.git'
-                mvn clean verify -Pcucumber
             }
         }
     }
