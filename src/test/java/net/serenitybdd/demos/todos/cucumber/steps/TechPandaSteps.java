@@ -10,5 +10,6 @@ public class TechPandaSteps {
     public void jameRegisterAccountInLiveGuruSuccessfully(Actor actor) {
         actor.attemptsTo(CommonPage.registerAccount());
         System.out.println("123456");
+        System.out.println("123456");
     }
 }
