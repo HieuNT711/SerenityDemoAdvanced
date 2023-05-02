@@ -11,5 +11,6 @@ public class TechPandaSteps {
         actor.attemptsTo(CommonPage.registerAccount());
         System.out.println("123456");
         System.out.println("123456");
+        System.out.println("123456");
     }
 }
